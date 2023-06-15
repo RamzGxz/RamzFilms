@@ -7,7 +7,7 @@ const Banner = () => {
 
     const fetchPopular = async () => {
         const options = {
-            url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=3',
+            url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=23',
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -25,28 +25,39 @@ const Banner = () => {
 
     useEffect(() => {
         fetchPopular()
-    }, [])
+    }, [data])
+
 
     return (
-        <div className='container'>
+        <div className='container w-75 py-5'>
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner ">
                     <div className="carousel-item active">
                         <img src={`${imageBaseUrl}/h8gHn0OzBoaefsYseUByqsmEDMY.jpg`} className='d-block w-100 rounded' height={600} />
                         <div class="carousel-caption d-none d-md-block px-1 rounded" style={{
-                                    backgroundColor: 'rgba(0, 0, 0, 0.3)'
-                                }}>
+                            backgroundColor: 'rgba(0, 0, 0, 0.3)'
+                        }}>
                             <h4 className='fw-bolder'>John Wick: Chapter 4</h4>
                             <p className='text-white mb-0'>With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.</p>
+                            <i className="fa-solid fa-star position-absolute d-flex" style={{
+                                color: '#fca311',
+                                top: 10,
+                                right: 10
+                            }}><h6 className='ms-1'>7.9</h6></i>
                         </div>
                     </div>
                     {data.map((item) => {
                         return (
                             <div className="carousel-item" key={item.id}>
-                                <img src={`${imageBaseUrl}${item.backdrop_path}`} className='d-block w-100 rounded' height={600}/>
+                                <img src={`${imageBaseUrl}${item.backdrop_path}`} className='d-block w-100 rounded' height={600} />
                                 <div class="carousel-caption d-none d-md-block px-1 rounded" style={{
                                     backgroundColor: 'rgba(0, 0, 0, 0.3)'
                                 }}>
+                                    <i className="fa-solid fa-star position-absolute d-flex" style={{
+                                        color: '#fca311',
+                                        top: 10,
+                                        right: 10
+                                    }}><h6 className='ms-1'>{item.vote_average}</h6></i>
                                     <h4 className='fw-bolder'>{item.original_title}</h4>
                                     <p className='mb-0'>{item.overview}</p>
                                 </div>

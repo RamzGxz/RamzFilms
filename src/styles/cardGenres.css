@@ -1,0 +1,42 @@
+::-webkit-scrollbar {
+    width: 6px;
+    
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #fca311;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    transition: all ease-in-out .3s;
+    background-color: #dc3545;
+  }
+
+
+.card-content {
+    opacity: 0;
+    transition: all ease-in-out .3s;
+    max-height: 25vh;
+    overflow-y: auto;
+}
+
+.card {
+    transition: all ease-in-out .1s;
+}
+
+.card:hover .card-content {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.card:hover {
+    cursor: pointer;
+} 
+.card:hover .card-titleCont{
+    visibility: hidden;
+}

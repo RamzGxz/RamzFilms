@@ -1,10 +1,10 @@
 import React from 'react'
 import '../styles/loader.css'
-const LoaderOnces = () => {
+const LoaderOnces = ({width}) => {
     return (
         <div className='container py-3 m-auto d-flex justify-content-center align-items-center' style={{
             height: '40vh',
-            width: '18rem'
+            width: width
         }}>
             <div className="loader m-auto">
                 <div className="bar1" />

@@ -10,7 +10,7 @@ const LazyMovieImages = ({src, alt}) => {
 
     return (
         <div>
-            {!imageLoaded && <LoaderOnces/>}
+            {!imageLoaded && <LoaderOnces width={'8rem'}/>}
             <img src={src} alt={alt} onLoad={handleImageLoad} style={{ display: imageLoaded ? 'block' : 'none' }} className='card-img-top'/>
         </div>
     );

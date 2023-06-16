@@ -5,11 +5,12 @@ import 'swiper/swiper.css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Mousewheel]);
 
-const SwiperCard = () => {
+const SwiperCard = ({ setMovieId }) => {
     const [data, setData] = useState([])
     const imageBaseUrl = 'https://image.tmdb.org/t/p/original'
 
@@ -19,7 +20,7 @@ const SwiperCard = () => {
         navigation: true,
         pagination: true,
         loop: true,
-        autoplay:{
+        autoplay: {
             delay: 2000
         },
         mousewheel: true
@@ -52,21 +53,23 @@ const SwiperCard = () => {
                 {data.map((item) => {
                     return (
                         <SwiperSlide key={item.id}>
-                            <div className='card' style={{ width: '9rem' }} >
-                                <i className="fa-solid fa-star position-absolute d-flex justify-content-center align-items-center p-1 rounded" style={{
-                                    color: '#fca311',
-                                    top: 5,
-                                    right: 5,
-                                    fontSize: '10px',
-                                    backgroundColor: 'rgba(0, 0, 0, 0.5)'
-                                }}><h6 className='ms-1 mb-0'style={{
-                                    fontSize: '10px'
-                                }}>{item.vote_average}</h6></i>
-                                <img src={`${imageBaseUrl}${item.poster_path}`} alt={`${item.original_title}`} style={{
-                                    width: '100%',
-                                    height: '30vh'
-                                }} />
-                            </div>
+                            <Link to={`/details/${item.id}`} onClick={()=>setMovieId(item.id)}>
+                                <div className='card' style={{ width: '9rem' }} >
+                                    <i className="fa-solid fa-star position-absolute d-flex justify-content-center align-items-center p-1 rounded" style={{
+                                        color: '#fca311',
+                                        top: 5,
+                                        right: 5,
+                                        fontSize: '10px',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                                    }}><h6 className='ms-1 mb-0' style={{
+                                        fontSize: '10px'
+                                    }}>{item.vote_average}</h6></i>
+                                    <img src={`${imageBaseUrl}${item.poster_path}`} alt={`${item.original_title}`} style={{
+                                        width: '100%',
+                                        height: '30vh'
+                                    }} />
+                                </div>
+                            </Link>
                         </SwiperSlide>
                     )
                 })}

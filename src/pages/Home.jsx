@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, lazy, Suspense } from "react"
 import Banner from "../components/Banner"
 import Header from "../components/Header"
 import SwiperCard from "../components/SwiperCard"
 import axios from "axios"
-import CardGenres from "../components/CardGenres"
+import Loader from "../components/Loader"
+import { Link } from "react-router-dom"
 
-const Home = () => {
+const CardMovie = lazy(() => import('../components/CardMovie'))
+
+const Home = ({setMovieId}) => {
     const [genres, setGenres] = useState([])
     const [genreId, setGenreId] = useState('')
     const [genreName, setGenreName] = useState('Action')
@@ -37,24 +40,22 @@ const Home = () => {
         setGenrePage(1)
     }
 
-    
-
     useEffect(() => {
         fetchFilmData()
     }, [])
 
     return (
         <div>
-            <Header act1={'text-danger'} />
+            <Header act1={'text-danger'}/>
             <div className="py-3 ">
                 <div className="" style={{
                     marginTop: '2%'
                 }}>
-                    <Banner />
+                    <Banner setMovieId={setMovieId}/>
 
                     <div className="container my-3 text-white">
                         <h4 className="mb-3">What's New</h4>
-                        <SwiperCard />
+                        <SwiperCard  setMovieId={setMovieId}/>
                     </div>
 
                     <div className="container py-3 text-white w-100 d-flex flex-row">
@@ -81,7 +82,9 @@ const Home = () => {
                             <h4 className="mb-3 me-3 text-white">Genre : {genreName}</h4>
                             <h4 className="mb-3 me-3 text-white">Pages : {genrePage}</h4>
                         </div>
-                        <CardGenres genreId={genreId} genreName={genreName} genrePages={genrePage} setGenrePage={setGenrePage} />
+                        <Suspense fallback={<Loader/>}>
+                            <CardMovie genreId={genreId} genreName={genreName} genrePages={genrePage} setGenrePage={setGenrePage} setMovieId={setMovieId}/>
+                        </Suspense>
                     </div>
                 </div>
             </div>

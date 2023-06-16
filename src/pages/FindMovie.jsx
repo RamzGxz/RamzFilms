@@ -2,9 +2,11 @@ import React, { useEffect, useState, lazy, Suspense } from 'react';
 import Header from '../components/Header';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../styles/cardGenres.css'
 
 const LazyMovieImages = lazy(() => import('../components/LazyMovieImages'))
-const FindMovie = ({setMovieId}) => {
+
+const FindMovie = ({ setMovieId }) => {
     const [data, setData] = useState([])
     const [query, setQuery] = useState('A')
     const imageBaseUrl = 'https://image.tmdb.org/t/p/original'
@@ -107,8 +109,14 @@ const FindMovie = ({setMovieId}) => {
                                                                 </div>
                                                             )
                                                         }
-                                                        <div className='card-body position-absolute bottom-0 p-0 bg-dark w-100 justify-content-center d-flex rounded-bottom-2 py-1 align-items-center   '>
+                                                        <div className='px-2 py-2 position-absolute bottom-0 z-1 bg-dark text-white container'>
+                                                            <h5 className='fw-bolder mb-0 card-titleCont text-center'>{item.title}</h5>
+                                                        </div>
+                                                        <div className='card-body position-absolute bg-dark text-white bottom-0 card-content d-flex align-items-center m-auto flex-column z-3'>
                                                             <h6 className='mb-0 text-center text-white px-2'>{item.title}</h6>
+                                                            <p className="card-text text-wrap w-100" style={{
+                                                                textAlign: 'justify'
+                                                            }}>{item.overview}</p>
                                                         </div>
                                                     </div>
                                                 </Link>

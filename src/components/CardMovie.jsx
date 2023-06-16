@@ -77,7 +77,7 @@ const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, se
                                             <h5 className='fw-bolder mb-0 card-titleCont text-center'>{item.title}</h5>
                                         </div>
                                         <div className="card-body position-absolute bg-dark text-white bottom-0 card-content d-flex align-items-center m-auto flex-column z-3">
-                                            <h5 className='card-title fw-bolder'>{item.title}</h5>
+                                            <h5 className='card-title fw-bolder text-center'>{item.title}</h5>
                                             <p className="card-text text-wrap w-100" style={{
                                                 textAlign: 'justify'
                                             }}>{item.overview}</p>

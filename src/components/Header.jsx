@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-const Header = ({ act1, act2, act3, act4, act5}) => {
+const Header = ({ act1, act2, act3, act5}) => {
 
     const [isScrolled, setIsScrolled] = useState(false)
     const [active1, setActive1] = useState(false)
     const [active2, setActive2] = useState(false)
     const [active3, setActive3] = useState(false)
-    const [active4, setActive4] = useState(false)
     const [active5, setActive5] = useState(false)
 
     const handleScroll = () => {
@@ -18,8 +17,8 @@ const Header = ({ act1, act2, act3, act4, act5}) => {
         }
     }
 
-    const acts = [act1, act2, act3, act4, act5]
-    const setActives = [setActive1, setActive2, setActive3, setActive4, setActive5]
+    const acts = [act1, act2, act3, act5]
+    const setActives = [setActive1, setActive2, setActive3, setActive5]
     useEffect(() => {
 
         acts.forEach((act, index) => {
@@ -37,9 +36,9 @@ const Header = ({ act1, act2, act3, act4, act5}) => {
     }, [isScrolled, acts])
 
     return (
-        <div className="z-3">
-            <header className={`${isScrolled ? 'py-2' : 'py-3'} position-fixed w-100`} style={{
-                backgroundColor: isScrolled ? '#fca311' : 'black',
+        <div className="">
+            <header className={`${isScrolled ? 'py-2' : 'py-3'} position-fixed w-100 top-0`} style={{
+                backgroundColor: isScrolled ? '#fca311' : 'transparent',
                 zIndex: 99999,
                 transition: 'all ease-in .3s'
             }}>
@@ -50,9 +49,8 @@ const Header = ({ act1, act2, act3, act4, act5}) => {
                         </Link>
                         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <li><Link to={'/'} className={`nav-link px-2 ${isScrolled ? `${active1 ? `${act1}` : 'text-black'}` : `${active1 ? `${act1}` : 'text-white'}`} fw-bolder`}>Home</Link></li>
-                            <li><Link to={''} className={`nav-link px-2 ${isScrolled ? `${active2 ? `${act2}` : 'text-black'}` : `${active2 ? `${act2}` : 'text-white'}`} fw-bolder`}>Table List</Link></li>
+                            <li><Link to={'/movie/list'} className={`nav-link px-2 ${isScrolled ? `${active2 ? `${act2}` : 'text-black'}` : `${active2 ? `${act2}` : 'text-white'}`} fw-bolder`}>Table List</Link></li>
                             <li><Link to={'/findMovie'} className={`nav-link px-2 ${isScrolled ? `${active3 ? `${act3}` : 'text-black'}` : `${active3 ? `${act3}` : 'text-white'}`} fw-bolder`}>Find Movie</Link></li>
-                            <li><Link to={''} className={`nav-link px-2 ${isScrolled ? `${active4 ? `${act4}` : 'text-black'}` : `${active4 ? `${act4}` : 'text-white'}`} fw-bolder`}>Admin</Link></li>
                             <li><Link to={''} className={`nav-link px-2 ${isScrolled ? `${active5 ? `${act5}` : 'text-black'}` : `${active5 ? `${act5}` : 'text-white'}`} fw-bolder`}>About</Link></li>
                         </ul>
                         <div className="text-end">

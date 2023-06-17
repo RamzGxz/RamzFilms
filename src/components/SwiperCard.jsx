@@ -12,7 +12,7 @@ SwiperCore.use([Navigation, Pagination, Autoplay, Mousewheel]);
 
 const SwiperCard = ({ setMovieId }) => {
     const [data, setData] = useState([])
-    const imageBaseUrl = 'https://image.tmdb.org/t/p/original'
+    const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'
 
     const swiperParams = {
         spaceBetween: 40,
@@ -28,7 +28,7 @@ const SwiperCard = ({ setMovieId }) => {
 
     const fetchData = async () => {
         const options = {
-            url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=10',
+            url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=55',
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -46,7 +46,7 @@ const SwiperCard = ({ setMovieId }) => {
 
     useEffect(() => {
         fetchData()
-    }, [data])
+    }, [fetchData])
     return (
         <div>
             <Swiper {...swiperParams}>

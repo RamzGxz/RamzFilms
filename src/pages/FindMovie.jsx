@@ -7,9 +7,11 @@ import '../styles/cardGenres.css'
 const LazyMovieImages = lazy(() => import('../components/LazyMovieImages'))
 
 const FindMovie = ({ setMovieId }) => {
+    const listWord = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'V', 'w', 'X', 'Y', 'Z']
+
     const [data, setData] = useState([])
-    const [query, setQuery] = useState('A')
-    const imageBaseUrl = 'https://image.tmdb.org/t/p/original'
+    const [query, setQuery] = useState('C')
+    const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'
     const [areData, setAreData] = useState(false)
 
     const fetchSearchMovie = async () => {
@@ -38,11 +40,12 @@ const FindMovie = ({ setMovieId }) => {
 
     useEffect(() => {
         fetchSearchMovie()
-    }, [data, areData])
+        
+    }, [fetchSearchMovie])
 
     return (
         <div>
-            <Header act3={'text-danger'} />
+            <Header act3={'text-danger'}/>
             <div className='py-3'>
                 <div className='container' style={{
                     marginTop: '5%'
@@ -58,14 +61,14 @@ const FindMovie = ({ setMovieId }) => {
 
                     <form action="" onSubmit={(e) => {
                         e.preventDefault()
-                        setData([])
+                        setData(data)
                     }}>
                         <div className='d-flex justify-content-between'>
-                            <input type="text" class="form-control form-control-sm rounded-end-0 bg-transparent" onChange={(e) => setQuery(e.target.value)} style={{
+                            <input type="text" className="form-control form-control-sm rounded-end-0 bg-transparent" onChange={(e) => setQuery(e.target.value)} style={{
                                 border: '2px solid #fca311',
                                 color: 'white'
                             }} onBlur={() => {
-                                setQuery('a')
+                                setQuery(query)
                             }} />
                             <button type="submit" className="btn border-start-0 rounded-start-0" style={{
                                 backgroundColor: '#fca311'

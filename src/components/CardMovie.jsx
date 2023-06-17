@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import axios from 'axios';
 import '../styles/cardGenres.css'
 import Loader from './Loader';
@@ -12,11 +12,6 @@ const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, se
 
     const pageHandleClick = () => {
         setGenrePage(genrePages + 1)
-        if (movieDataGenres.length <= genrePage) {
-            setGenrePage(1)
-        } else {
-            setGenrePage(genrePage)
-        }
     }
 
     const fetchData = async () => {
@@ -44,7 +39,7 @@ const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, se
 
     useEffect(() => {
         fetchData()
-    }, [movieDataGenres, genrePage])
+    }, [fetchData])
     return (
         <div>
             <div className='row'>
@@ -99,7 +94,7 @@ const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, se
                         </li>
                         {movieDataGenres.map((item, data) => {
                             return (
-                                <li className="page-item"><button className="btn rounded-0 fs-6 page-link bg-danger text-white" href="#" onClick={() => setGenrePage(data + 1)}>{data + 1}</button></li>
+                                <li className="page-item"><button className="btn rounded-0 fs-6 page-link bg-danger text-white" href="#" onClick={() => setGenrePage(data + 1)} key={data}>{data + 1}</button></li>
                             )
                         })}
                         <li className="page-item">

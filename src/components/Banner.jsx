@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Banner = ({ setMovieId }) => {
@@ -31,12 +31,12 @@ const Banner = ({ setMovieId }) => {
 
     return (
         <div className='container w-75 py-5'>
-            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner ">
-                    <Link to={'/details/603692'} onClick={()=> setMovieId(603692)}>
+                    <Link to={'/details/603692'} onClick={()=> setMovieId(603692)} key={1}>
                         <div className="carousel-item active">
                             <img src={`${imageBaseUrl}/h8gHn0OzBoaefsYseUByqsmEDMY.jpg`} className='d-block w-100 rounded' height={600} />
-                            <div class="carousel-caption d-none d-md-block px-1 rounded" style={{
+                            <div className="carousel-caption d-none d-md-block px-1 rounded" style={{
                                 backgroundColor: 'rgba(0, 0, 0, 0.3)'
                             }}>
                                 <h4 className='fw-bolder'>John Wick: Chapter 4</h4>
@@ -51,10 +51,10 @@ const Banner = ({ setMovieId }) => {
                     </Link>
                     {data.map((item) => {
                         return (
-                            <Link to={`/details/${item.id}`} onClick={()=>setMovieId(item.id)}>
-                                <div className="carousel-item" key={item.id}>
+                            <Link to={`/details/${item.id}`} onClick={()=>setMovieId(item.id)} key={item.id}>
+                                <div className="carousel-item" >
                                     <img src={`${imageBaseUrl}${item.backdrop_path}`} className='d-block w-100 rounded' height={600} />
-                                    <div class="carousel-caption d-none d-md-block px-1 rounded" style={{
+                                    <div className="carousel-caption d-none d-md-block px-1 rounded" style={{
                                         backgroundColor: 'rgba(0, 0, 0, 0.3)'
                                     }}>
                                         <i className="fa-solid fa-star position-absolute d-flex" style={{

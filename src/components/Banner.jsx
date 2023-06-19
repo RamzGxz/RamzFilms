@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 const Banner = ({ setMovieId }) => {
     const [data, setData] = useState([])
     const imageBaseUrl = 'https://image.tmdb.org/t/p/original'
-
+    const [updated, setUpdated] = useState(false)
     const fetchPopular = async () => {
         const options = {
-            url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=4',
+            url: 'https://api.themoviedb.org/3/trending/movie/week?language=en-US',
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -19,6 +19,7 @@ const Banner = ({ setMovieId }) => {
             const res = await axios.request(options)
             const data = res.data.results
             setData(data)
+            setUpdated(!updated)
         } catch (error) {
             console.log(error)
         }
@@ -26,7 +27,7 @@ const Banner = ({ setMovieId }) => {
 
     useEffect(() => {
         fetchPopular()
-    }, [data])
+    }, [updated])
 
 
     return (

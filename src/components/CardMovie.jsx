@@ -3,11 +3,13 @@ import axios from 'axios';
 import '../styles/cardGenres.css'
 import Loader from './Loader';
 import { Link } from 'react-router-dom';
+import LoaderOnces from './LoaderOnces';
 
 const LazyGenresImages = lazy(() => import('./LazyGenresImages'))
 
-const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, setMovieId }) => {
+const CardMovie = ({ genreId, genreName, genrePages, setGenrePage, setMovieId }) => {
     const [movieDataGenres, setMovieDataGenres] = useState([])
+    const [updated, setUpdated] = useState(false)
     const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'
 
     const pageHandleClick = () => {
@@ -31,7 +33,7 @@ const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, se
             const res = await axios.request(options)
             const data = res.data.results
             setMovieDataGenres(data)
-
+            setUpdated(!updated)
         } catch (error) {
             console.log(error)
         }
@@ -39,7 +41,7 @@ const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, se
 
     useEffect(() => {
         fetchData()
-    }, [fetchData])
+    }, [updated])
     return (
         <div>
             <div className='row'>
@@ -65,7 +67,7 @@ const CardMovie = ({ genreId, genreName, genrePages, genrePage, setGenrePage, se
                                                 }}>{item.vote_average}</h6>
                                             </i>
                                         </div>
-                                        <Suspense fallback={<Loader />}>
+                                        <Suspense fallback={<LoaderOnces />}>
                                             <LazyGenresImages src={`${imageBaseUrl}${item.poster_path}`} alt={`${item.original_title}`} />
                                         </Suspense>
                                         <div className='px-2 py-2 position-absolute bottom-0 z-1 bg-dark text-white container'>

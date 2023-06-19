@@ -8,12 +8,11 @@ import { Link } from "react-router-dom"
 
 const CardMovie = lazy(() => import('../components/CardMovie'))
 
-const Home = ({setMovieId}) => {
+const Home = ({ setMovieId }) => {
     const [genres, setGenres] = useState([])
     const [genreId, setGenreId] = useState('')
     const [genreName, setGenreName] = useState('Action')
     const [genrePage, setGenrePage] = useState(1)
-
 
     const fetchFilmData = async () => {
         const options = {
@@ -46,16 +45,16 @@ const Home = ({setMovieId}) => {
 
     return (
         <div>
-            <Header act1={'text-danger'}/>
+            <Header act1={'text-danger'} />
             <div className="py-3 ">
                 <div className="" style={{
                     marginTop: '2%'
                 }}>
-                    <Banner setMovieId={setMovieId}/>
+                    <Banner setMovieId={setMovieId} />
 
                     <div className="container my-3 text-white">
                         <h4 className="mb-3">What's New</h4>
-                        <SwiperCard  setMovieId={setMovieId}/>
+                        <SwiperCard setMovieId={setMovieId} />
                     </div>
 
                     <div className="container py-3 text-white w-100 d-flex flex-row">
@@ -82,8 +81,8 @@ const Home = ({setMovieId}) => {
                             <h4 className="mb-3 me-3 text-white">Genre : {genreName}</h4>
                             <h4 className="mb-3 me-3 text-white">Pages : {genrePage}</h4>
                         </div>
-                        <Suspense fallback={<Loader/>}>
-                            <CardMovie genreId={genreId} genreName={genreName} genrePages={genrePage} setGenrePage={setGenrePage} setMovieId={setMovieId}/>
+                        <Suspense fallback={<Loader />}>
+                            <CardMovie genreId={genreId} genreName={genreName} genrePages={genrePage} setGenrePage={setGenrePage} setMovieId={setMovieId} />
                         </Suspense>
                     </div>
                 </div>

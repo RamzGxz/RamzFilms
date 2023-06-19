@@ -51,7 +51,7 @@ const Header = ({ act1, act2, act3, act5}) => {
                             <li><Link to={'/'} className={`nav-link px-2 ${isScrolled ? `${active1 ? `${act1}` : 'text-black'}` : `${active1 ? `${act1}` : 'text-white'}`} fw-bolder`}>Home</Link></li>
                             <li><Link to={'/movie/list'} className={`nav-link px-2 ${isScrolled ? `${active2 ? `${act2}` : 'text-black'}` : `${active2 ? `${act2}` : 'text-white'}`} fw-bolder`}>Table List</Link></li>
                             <li><Link to={'/findMovie'} className={`nav-link px-2 ${isScrolled ? `${active3 ? `${act3}` : 'text-black'}` : `${active3 ? `${act3}` : 'text-white'}`} fw-bolder`}>Find Movie</Link></li>
-                            <li><Link to={''} className={`nav-link px-2 ${isScrolled ? `${active5 ? `${act5}` : 'text-black'}` : `${active5 ? `${act5}` : 'text-white'}`} fw-bolder`}>About</Link></li>
+                            <li><Link to={'/about'} className={`nav-link px-2 ${isScrolled ? `${active5 ? `${act5}` : 'text-black'}` : `${active5 ? `${act5}` : 'text-white'}`} fw-bolder`}>About</Link></li>
                         </ul>
                         <div className="text-end">
                             <button type="button" className={`btn ${isScrolled ? 'btn-dark' : 'btn-outline-light'}  me-2 fw-bolder`}>Login</button>

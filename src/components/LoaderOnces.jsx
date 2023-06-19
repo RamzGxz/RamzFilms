@@ -3,7 +3,7 @@ import '../styles/loader.css'
 const LoaderOnces = ({width}) => {
     return (
         <div className='container py-3 m-auto d-flex justify-content-center align-items-center' style={{
-            height: '40vh',
+            height: '50vh',
             width: width
         }}>
             <div className="loader m-auto">

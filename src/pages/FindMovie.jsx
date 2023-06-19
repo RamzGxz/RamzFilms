@@ -8,7 +8,7 @@ const LazyMovieImages = lazy(() => import('../components/LazyMovieImages'))
 
 const FindMovie = ({ setMovieId }) => {
     const listWord = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'V', 'w', 'X', 'Y', 'Z']
-
+    const [updated, setUpdated] = useState(false) 
     const [data, setData] = useState([])
     const [query, setQuery] = useState('C')
     const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'
@@ -29,9 +29,11 @@ const FindMovie = ({ setMovieId }) => {
             if (res.data.results && res.data.results.length > 0) {
                 setData(res.data.results)
                 setAreData(true)
+                setUpdated(!updated)
             } else {
                 setData([])
                 setAreData(false)
+                setUpdated(!updated)
             }
         } catch (error) {
             console.log(error)
@@ -40,8 +42,7 @@ const FindMovie = ({ setMovieId }) => {
 
     useEffect(() => {
         fetchSearchMovie()
-        
-    }, [fetchSearchMovie])
+    }, [updated])
 
     return (
         <div>
@@ -69,7 +70,7 @@ const FindMovie = ({ setMovieId }) => {
                                 color: 'white'
                             }} onBlur={() => {
                                 setQuery(query)
-                            }} />
+                            }} onClick={(e)=>setQuery(e.target.value)}/>
                             <button type="submit" className="btn border-start-0 rounded-start-0" style={{
                                 backgroundColor: '#fca311'
                             }}>
